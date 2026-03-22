@@ -17,6 +17,7 @@ export const bookings = pgTable('bookings', {
     createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (table) => ({
     uniqueBooking: unique().on(table.date, table.timeSlot),
+    uniqueUserDate: unique().on(table.userId, table.date),
     dateIdx: index('idx_bookings_date').on(table.date),
 }))
 

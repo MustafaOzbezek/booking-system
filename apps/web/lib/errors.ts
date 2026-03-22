@@ -6,6 +6,7 @@ export const ERROR_MESSAGES: Record<string, string> = {
     INVALID_CREDENTIALS: 'Email veya şifre hatalı',
     EMAIL_ALREADY_EXISTS: 'Bu email adresi zaten kullanımda',
     VALIDATION_ERROR: 'Lütfen tüm alanları doğru doldurun',
+    USER_ALREADY_BOOKED: 'Bu gün için zaten bir randevunuz var',
 }
 
 export function getErrorMessage(errorCode: string, fallback = 'Bir hata oluştu'): string {

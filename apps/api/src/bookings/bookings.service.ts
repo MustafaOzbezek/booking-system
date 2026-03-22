@@ -107,6 +107,14 @@ export class BookingsService {
             }
         } catch (error: any) {
             if (error?.cause?.code === '23505' || error?.code === '23505') {
+                // Hangi constraint ihlal edildi?
+                const detail = error?.cause?.detail || error?.detail || ''
+                if (detail.includes('user_id') || detail.includes('userId')) {
+                    throw new ConflictException({
+                        error: ErrorCodes.USER_ALREADY_BOOKED,
+                        message: 'Bu gün için zaten bir randevunuz var',
+                    })
+                }
                 throw new ConflictException({
                     error: ErrorCodes.SLOT_ALREADY_BOOKED,
                     message: 'Bu saat dilimi zaten dolu, lutfen baska bir saat secin',
